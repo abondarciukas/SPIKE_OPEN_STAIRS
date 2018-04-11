@@ -21,7 +21,7 @@ void KinectData::setup(int id, int map) {
 
 	roisx = 100;
 	roisy = 300;
-	roiex = ofGetWidth()-100;
+	roiex = kw-100;
 	roiey = 325;
 
 	threshMin = 500;
@@ -71,11 +71,10 @@ void KinectData::update() {
 
 			int px, py, pz, kz;
 
-			kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, ofGetWidth());
-
 			switch (kinectMap) {
 
 			case 0: //Regular mapping
+				kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, ofGetWidth());
 				px = blob.x;
 				py = blob.y;
 				pz = kz;
