@@ -1,0 +1,4 @@
+ofxDelaunay
+ofxGui
+ofxKinect
+ofxOpenCv
