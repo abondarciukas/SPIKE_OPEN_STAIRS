@@ -35,19 +35,10 @@ class ofApp : public ofBaseApp{
 		ofxDelaunay delaunay;
 		vector<ofPoint> points;
 		ofMesh mesh;
-		vector<vector<float>> dist;
-		//Test particles
-		vector<ofVec2f> prevPos;
-		vector<ofVec2f> wavePos, heading;
-		vector<float> waveRadius, waveStrength;
-		//Footsteps steps;
-		//NoiseTerrain terrain;
 
 		StepsGrid steps;
 
 		ofMesh project;
-
-
 
 		ofxVec2Slider corner0, corner1, corner2, corner3;
 		ofxFloatSlider kmin, kmax;

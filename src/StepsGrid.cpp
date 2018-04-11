@@ -13,15 +13,18 @@ void StepsGrid::setup(int nSteps) {
 	w = 787;
 	h = 3000;
 
-	col = 2;
+	col = 10;
 	row = 2 * nSteps;
 	srow = h / row;
-	scol = w;
+	scol = w / col;
+
+	row++;
+	col++;
 
 	output.clear();
 	output.allocate(h, w, GL_RGB, 0);
 	
-	for (int y = 0; y < row+1; y++) {
+	for (int y = 0; y < row; y++) {
 		for (int x = 0; x < col; x++) {
 			pos.push_back(ofPoint(x*scol, y*srow));
 			vel.push_back(ofPoint(0, 0));
@@ -32,16 +35,18 @@ void StepsGrid::setup(int nSteps) {
 	stepsGrid.setMode(OF_PRIMITIVE_LINES);
 	stepsGrid.addVertices(pos);
 
-	for (int y = 0; y < row+1; y++) {
+	for (int y = 0; y < row; y++) {
 		for (int x = 0; x < col; x++) {
 			int index = x + col * y;
 			if (x < col-1) {
 				stepsGrid.addIndex(index);
 				stepsGrid.addIndex(index+1);
 			}
-			if (y < row) {
-				stepsGrid.addIndex(index);
-				stepsGrid.addIndex(index + col);
+			if (y < row-1) {
+				if (x == 0 || x == col-1) {
+					stepsGrid.addIndex(index);
+					stepsGrid.addIndex(index + col);
+				}
 			}
 		}
 	}
@@ -73,7 +78,7 @@ void StepsGrid::update(vector<ofPoint> &_pts) {
 		}
 		ofPoint tcpos = stepsGrid.getVertex(p);
 		ofPoint thead = pos[p] - tcpos;
-		thead.limit(0.05);
+		thead.limit(0.2);
 		tvel += thead;
 		if (tcpos.x < 0) {
 			tvel.x = 1;
@@ -105,9 +110,6 @@ void StepsGrid::draw() {
 	ofSetLineWidth(5);
 	ofSetColor(255);
 	stepsGrid.draw();
-	for (ofPoint p : pos) {
-		ofDrawCircle(p, 10);
-	}
 	ofPopStyle();
 	ofPopMatrix();
 	output.end();
