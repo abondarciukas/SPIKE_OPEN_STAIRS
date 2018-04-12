@@ -22,13 +22,15 @@ void KinectData::setup(int id, int map) {
 	mx = 787;
 	my = 3000;
 
-	roisx = 0;
-	roisy = 215;
-	roiex = kw;
+	roisx = 100;
+	roisy = 255;
+	roiex = kw-100;
 	roiey = 265;
 
 	threshMin = 500;
-	threshMax = 3600;
+	threshMax = 3700;
+
+	offset = 100;
 
 	kinect.setDepthClipping(threshMin, threshMax);
 	kinect.init(deviceId);
@@ -72,11 +74,10 @@ void KinectData::update() {
 
 			ofPoint blob = cvContour.blobs[b].centroid;
 
-			float dist = kinect.getDistanceAt(blob.x, blob.y);
 
-			int cutoff = ofMap(dist, threshMin, threshMax, 320, 50);
+			ofVec3f wpos = kinect.getWorldCoordinateAt(blob.x, blob.y);
 
-			if (blob.x > 320 - cutoff && blob.x < 320 + cutoff) {
+			if (wpos.x > -680 && wpos.x < 680) {
 
 				switch (kinectMap) {
 
@@ -103,21 +104,20 @@ void KinectData::update() {
 					
 
 				case 3: // Flip Y and Z (top to bottom)
-					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, my);
+					kz = ofMap(wpos.z, threshMin, threshMax+offset, 0, my);
 					px = blob.x;
 					py = kz;
 					pz = blob.y;
 					break;
 
 				case 4: // Flip Y and Z (bottom to top)
-					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, my, 0);
-					px = blob.x;
+					kz = ofMap(wpos.z, threshMin, threshMax+offset, my, 0);
+					px = ofMap(wpos.x, -680, 680, 0, mx);
 					py = kz;
 					pz = blob.y;
 					break;
 
 				}
-
 				tp.push_back(ofPoint(px, py));
 			}
 		}

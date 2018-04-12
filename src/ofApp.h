@@ -43,6 +43,7 @@ class ofApp : public ofBaseApp{
 
 		ofxVec2Slider corner0, corner1, corner2, corner3;
 		ofxFloatSlider kmin, kmax;
+		ofxIntSlider koffset;
 
 		ofxPanel gui;
 

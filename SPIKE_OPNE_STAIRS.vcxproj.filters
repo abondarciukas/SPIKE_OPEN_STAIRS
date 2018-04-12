@@ -124,6 +124,39 @@
 		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxOpenCv\src\ofxCvShortImage.cpp">
 			<Filter>addons\ofxOpenCv\src</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\src\ofxSpout2Receiver.cpp">
+			<Filter>addons\ofxSpout\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\src\ofxSpout2Sender.cpp">
+			<Filter>addons\ofxSpout\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutDirectX.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutGLDXinterop.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutGLextensions.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutMemoryShare.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutReceiver.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutSDK.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutSender.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutSenderNames.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\src\SpoutSharedMemory.cpp">
+			<Filter>addons\ofxSpout\libs\src</Filter>
+		</ClCompile>
 	</ItemGroup>
 	<ItemGroup>
 		<Filter Include="src">
@@ -287,6 +320,21 @@
 		</Filter>
 		<Filter Include="addons\ofxOpenCv\libs\opencv\include\opencv2\videostab">
 			<UniqueIdentifier>{D4F01CB4-61E3-5965-F3B1-CFB9}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxSpout">
+			<UniqueIdentifier>{F4DD1F4F-E479-F60E-B010-30BD}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxSpout\src">
+			<UniqueIdentifier>{836FBDC0-375C-97EA-F6ED-9730}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxSpout\libs">
+			<UniqueIdentifier>{7070A9E6-A71C-4358-F0E4-3D28}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxSpout\libs\include">
+			<UniqueIdentifier>{F563295D-7DBE-19DF-3FC9-BC5F}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxSpout\libs\src">
+			<UniqueIdentifier>{28E7BE13-68D6-674E-934B-47C2}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -916,6 +964,45 @@
 		</ClInclude>
 		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxOpenCv\libs\opencv\include\opencv2\videostab\videostab.hpp">
 			<Filter>addons\ofxOpenCv\libs\opencv\include\opencv2\videostab</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\src\ofxSpout2Receiver.h">
+			<Filter>addons\ofxSpout\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\src\ofxSpout2Sender.h">
+			<Filter>addons\ofxSpout\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\Spout.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutCommon.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutDirectX.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutGLDXinterop.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutGLextensions.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutMemoryShare.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutReceiver.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutSDK.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutSender.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutSenderNames.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\..\..\of_v0.9.8_vs_release\addons\ofxSpout\libs\include\SpoutSharedMemory.h">
+			<Filter>addons\ofxSpout\libs\include</Filter>
 		</ClInclude>
 	</ItemGroup>
 	<ItemGroup>

@@ -9,15 +9,16 @@ void ofApp::setup(){
 
 	gui.setup();
 
-	gui.add(kmin.setup("Clip min", 500, 500, 4500));
-	gui.add(kmax.setup("Clip max", 2000, 500, 4500));
+	gui.add(kmin.setup("Clip min", kinect.threshMin, 500, 4500));
+	gui.add(kmax.setup("Clip max", kinect.threshMax, 500, 4500));
+	gui.add(koffset.setup("Kinect offset", 0, -2000, 2000));
 	gui.add(corner0.setup("Corner0", ofVec2f(0,0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner1.setup("Corner1", ofVec2f(ofGetWidth(), 0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner2.setup("Corner2", ofVec2f(0, ofGetHeight()), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner3.setup("Corner3", ofVec2f(ofGetWidth(), ofGetHeight()), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 
 	showGui = true;
-	showKinect = false;
+	showKinect = false;	
 
 	project.enableIndices();
 	project.enableTextures();
@@ -42,6 +43,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	kinect.offset = koffset;
 	kinect.update();
 
 	steps.update(kinect.tp);

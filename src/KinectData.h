@@ -36,7 +36,7 @@ public:
 	int deviceId, kw, kh;
 	int nearClip, farClip;
 	int roisx, roisy, roiex, roiey, mx, my;
-
+	int offset;
 
 };
 

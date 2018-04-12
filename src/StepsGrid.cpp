@@ -61,9 +61,9 @@ void StepsGrid::update(vector<ofPoint> &_pts) {
 
 		for (int i = 0; i < _pts.size(); i++) {
 			float pdist = tcpos.distance(_pts[i]);
-			if (pdist < 100.0) {
+			if (pdist < 200.0) {
 				ofPoint tv = tcpos - _pts[i];
-				tv.limit(ofMap(pdist, 100.0, 0.0, 1.0, 2.0));
+				tv.limit(ofMap(pdist, 100.0, 0.0, 1.0, 5.0));
 				tvel += tv;
 			}
 		}
