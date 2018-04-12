@@ -8,6 +8,7 @@
 #include "ofxGui.h"
 #include "NoiseTerrain.h"
 #include "StepsGrid.h"
+#include "ofxSpout2Sender.h"
 
 class ofApp : public ofBaseApp{
 
@@ -47,4 +48,5 @@ class ofApp : public ofBaseApp{
 
 		bool showGui, showKinect;
 
+		ofxSpout2::Sender spout;
 };

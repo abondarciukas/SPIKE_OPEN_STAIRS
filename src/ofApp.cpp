@@ -66,6 +66,8 @@ void ofApp::draw(){
 	if (showGui) {
 		gui.draw();
 	}
+
+	spout.sendTexture(steps.output.getTexture(), "Steps Grid");
 	
 }
 

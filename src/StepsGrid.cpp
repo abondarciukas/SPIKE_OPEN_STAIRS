@@ -54,19 +54,6 @@ void StepsGrid::setup(int nSteps) {
 }
 
 void StepsGrid::update(vector<ofPoint> &_pts) {
-	//Get interaction points
-
-	/*for (int i = 0; i < _pts.size(); i++) {
-		for (int p = 0; p < stepsGrid.getNumVertices(); p++) {
-			ofPoint pt = stepsGrid.getVertex(p);
-			float dist = pt.distance(_pts[i]);
-			if (dist < 100.0) {
-				ofPoint tv = pt - _pts[i];
-				tv.limit(ofMap(dist, 100.0, 0.0, 1.0, 10.0));
-				vel[p] = tv;
-			}
-		}
-	}*/
 
 	for (int p = 0; p < stepsGrid.getNumVertices(); p++) {
 		ofPoint tvel = vel[p];
