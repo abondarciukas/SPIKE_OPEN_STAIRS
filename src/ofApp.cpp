@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	kinect.setup(0,2);
+	kinect.setup(0, 4); //Kinect bot to top mapping
 	ofSetFrameRate(60);
 	ofBackground(0);
 	steps.setup(13);
@@ -44,8 +44,6 @@ void ofApp::setup(){
 void ofApp::update(){
 	kinect.update();
 
-	//terrain.update(kinect.tp);
-
 	steps.update(kinect.tp);
 
 	project.setVertex(0, ofVec3f(corner0->x, corner0->y, 0));
@@ -63,6 +61,7 @@ void ofApp::draw(){
 
 	if (showKinect) {
 		kinect.draw(0, 0);
+		kinect.drawPoints(0, 0);
 	}
 	if (showGui) {
 		gui.draw();

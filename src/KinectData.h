@@ -35,7 +35,7 @@ public:
 	float threshMin, threshMax;
 	int deviceId, kw, kh;
 	int nearClip, farClip;
-	int roisx, roisy, roiex, roiey;
+	int roisx, roisy, roiex, roiey, mx, my;
 
 
 };
