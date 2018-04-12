@@ -19,13 +19,16 @@ void KinectData::setup(int id, int map) {
 	kw = 640;
 	kh = 480;
 
-	roisx = 100;
-	roisy = 300;
-	roiex = kw-100;
-	roiey = 325;
+	mx = 787;
+	my = 3000;
+
+	roisx = 0;
+	roisy = 215;
+	roiex = kw;
+	roiey = 265;
 
 	threshMin = 500;
-	threshMax = 2000;
+	threshMax = 3600;
 
 	kinect.setDepthClipping(threshMin, threshMax);
 	kinect.init(deviceId);
@@ -60,42 +63,63 @@ void KinectData::update() {
 
 	cvContour.findContours(cvDepthGrey, 250, 240000, 10, false, true);
 
-	//float *pixels = cvDepthFloat.getPixelsAsFloats();
-
 	tp.clear();
 
 	if (cvContour.nBlobs > 0) {
 		for (int b = 0; b < cvContour.nBlobs; b++) {
 
-			ofPoint blob = cvContour.blobs[b].centroid;
-
 			int px, py, pz, kz;
 
-			switch (kinectMap) {
+			ofPoint blob = cvContour.blobs[b].centroid;
 
-			case 0: //Regular mapping
-				kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, ofGetWidth());
-				px = blob.x;
-				py = blob.y;
-				pz = kz;
-				break;
+			float dist = kinect.getDistanceAt(blob.x, blob.y);
 
-			case 1: //Map Z to X (left to rigt) and Y to X
-				kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, ofGetWidth());
-				px = kz;
-				py = blob.x;
-				pz = kz;
-				break;
+			int cutoff = ofMap(dist, threshMin, threshMax, 320, 50);
 
-			case 2:// Flip Y and Z (top to bottom
-				kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0,ofGetHeight());
-				px = blob.x;
-				py = kz;
-				pz = blob.y;
-				break;
+			if (blob.x > 320 - cutoff && blob.x < 320 + cutoff) {
 
+				switch (kinectMap) {
+
+				case 0: //Regular mapping
+					kz = kinect.getDistanceAt(blob.x, blob.y);
+					px = blob.x;
+					py = blob.y;
+					pz = kz;
+					break;
+
+				case 1: //Map Z to X (left to rigt) and Y to X
+					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, mx);
+					px = kz;
+					py = blob.x;
+					pz = kz;
+					break;
+
+				case 2: //Map Z to X (right to left) and Y to X
+					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, mx, 0);
+					px = kz;
+					py = blob.x;
+					pz = kz;
+					break;
+					
+
+				case 3: // Flip Y and Z (top to bottom)
+					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, 0, my);
+					px = blob.x;
+					py = kz;
+					pz = blob.y;
+					break;
+
+				case 4: // Flip Y and Z (bottom to top)
+					kz = ofMap(kinect.getDistanceAt(blob.x, blob.y), threshMin, threshMax, my, 0);
+					px = blob.x;
+					py = kz;
+					pz = blob.y;
+					break;
+
+				}
+
+				tp.push_back(ofPoint(px, py));
 			}
-			tp.push_back(ofPoint(px, py));
 		}
 	}
 }
