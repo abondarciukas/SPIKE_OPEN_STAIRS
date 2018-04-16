@@ -5,14 +5,15 @@ void ofApp::setup(){
 	kinect.setup(0, 4); //Kinect bot to top mapping
 	ofSetFrameRate(60);
 	ofBackground(0);
-	steps.setup(13);
+	steps.setup(13, 5);
 
 	gui.setup();
 
 	gui.add(kmin.setup("Clip min", kinect.threshMin, 500, 4500));
 	gui.add(kmax.setup("Clip max", kinect.threshMax, 500, 4500));
 	gui.add(koffset.setup("Kinect offset", 0, -2000, 2000));
-	gui.add(corner0.setup("Corner0", ofVec2f(0,0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
+
+	gui.add(corner0.setup("Corner0", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner1.setup("Corner1", ofVec2f(ofGetWidth(), 0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner2.setup("Corner2", ofVec2f(0, ofGetHeight()), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	gui.add(corner3.setup("Corner3", ofVec2f(ofGetWidth(), ofGetHeight()), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
@@ -20,11 +21,12 @@ void ofApp::setup(){
 	showGui = true;
 	showKinect = false;	
 
+
 	project.enableIndices();
 	project.enableTextures();
 	project.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
 
-	project.addVertex(ofVec3f(0,0,0));
+	project.addVertex(ofVec3f(0, 0, 0));
 	project.addVertex(ofVec3f(ofGetWidth(), 0, 0));
 	project.addVertex(ofVec3f(0, ofGetHeight(), 0));
 	project.addVertex(ofVec3f(ofGetWidth(), ofGetHeight(), 0));
@@ -38,7 +40,6 @@ void ofApp::setup(){
 	project.addTexCoord(ofVec2f(steps.output.getWidth(), 0));
 	project.addTexCoord(ofVec2f(0, steps.output.getHeight()));
 	project.addTexCoord(ofVec2f(steps.output.getWidth(), steps.output.getHeight()));
-
 }
 
 //--------------------------------------------------------------

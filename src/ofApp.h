@@ -35,13 +35,12 @@ class ofApp : public ofBaseApp{
 		ofImage footprint;
 		ofxDelaunay delaunay;
 		vector<ofPoint> points;
-		ofMesh mesh;
 
 		StepsGrid steps;
-
 		ofMesh project;
 
 		ofxVec2Slider corner0, corner1, corner2, corner3;
+
 		ofxFloatSlider kmin, kmax;
 		ofxIntSlider koffset;
 
