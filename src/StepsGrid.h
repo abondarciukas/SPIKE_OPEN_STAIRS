@@ -18,6 +18,8 @@ public:
 
 	vector<ofPoint> pos, vel;
 
+	vector<vector<ofPoint>> posbuf;
+
 	ofFbo output;
 };
 
