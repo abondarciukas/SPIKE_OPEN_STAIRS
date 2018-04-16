@@ -84,6 +84,11 @@ void ofApp::keyPressed(int key){
 	if (key == 's') {
 		showKinect = !showKinect;
 	}
+	if (key == 'f') {
+		ofPixels temp;
+		steps.output.readToPixels(temp);
+		ofSaveImage(temp, "PROJECTION.jpg", OF_IMAGE_QUALITY_BEST);
+	}
 }
 
 //--------------------------------------------------------------

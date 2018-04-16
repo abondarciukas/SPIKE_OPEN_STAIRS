@@ -13,7 +13,7 @@ void StepsGrid::setup(int nSteps) {
 	w = 787;
 	h = 3000;
 
-	col = 20;
+	col = 50;
 	row = 2 * nSteps;
 	srow = h / row;
 	scol = w / col;
@@ -55,71 +55,78 @@ void StepsGrid::setup(int nSteps) {
 
 void StepsGrid::update(vector<ofPoint> &_pts) {
 
-	for (int p = 0; p < stepsGrid.getNumVertices(); p++) {
-		ofPoint tvel = vel[p];
-		ofPoint tcpos = stepsGrid.getVertex(p);
+	for (int y = 0; y < row; y++) {
+		for (int x = 0; x < col; x++) {
+			int index = x + col * y;
+			ofPoint tcvel = vel[index];
+			ofPoint tcpos = stepsGrid.getVertex(index);
 
-		for (int i = 0; i < _pts.size(); i++) {
-			float pdist = tcpos.distance(_pts[i]);
-			if (pdist < 200.0) {
-				ofPoint tv = tcpos - _pts[i];
-				tv.limit(ofMap(pdist, 100.0, 0.0, 1.0, 5.0));
-				tvel += tv;
+			ofPoint thead = pos[index] - tcpos;
+			thead.limit(0.2);
+			tcvel.y += thead.y;
+
+			for (int i = 0; i < _pts.size(); i++) {
+				float pdist = tcpos.distance(_pts[i]);
+				if (pdist < 300.0) {
+					ofPoint tv = pos[index] - _pts[i];
+					tv.limit(ofMap(pdist, 200.0, 0.0, 0.0, 1.0));
+					tcvel.y += tv.y;
+				}
 			}
-		}
 
-		//Set vertex colour
-		ofFloatColor c;
-		float hue = ofMap(tvel.length(), 10.0, 0.0, 0.0, 255);
-		float bright = 255;
-		float sat = ofMap(tvel.length(), 2.0,0.0,255,0);
-		c = ofColor::fromHsb(hue, sat, bright);
+			if (x > 0) {
+				ofPoint tnpos = stepsGrid.getVertex(index - 1);
 
-		stepsGrid.setColor(p, c);
-
-		ofPoint thead = pos[p] - tcpos;
-		thead.limit(1.0);
-		tvel += thead;
-		
-		for (int np = 0; np < stepsGrid.getNumVertices(); np++) {
-			ofPoint npos = stepsGrid.getVertex(np);
-			float ndist = npos.distance(tcpos);
-			if (np != p && ndist < 120.0) {
-				ofPoint nhead = tcpos - npos;
-				nhead.limit(ofMap(ndist, 120.0, 0.0, 0.0, 1.0));
-				tvel += nhead;
+				ofPoint tnhead = tcpos - tnpos;
+				tnhead.limit(0.5);
+				tcvel.y -= tnhead.y;
 			}
-		}
-		//Boundary conditions
-		/*if (tcpos.x < 0) {
-			tvel.x = 1;
-		}
-		if (tcpos.x > w) {
-			tvel.x = -1;
-		}
-		if (tcpos.y < 0) {
-			tvel.y = 1;
-		}
-		if (tcpos.y > h) {
-			tvel.y = -1;
-		}
-		*/
+			if (x < col) {
+				ofPoint tnpos = stepsGrid.getVertex(index + 1);
+				ofPoint tnhead = tcpos - tnpos;
+				tnhead.limit(0.5);
+				tcvel.y -= tnhead.y;
+			}
+			if (y > 0) {
+				ofPoint tnpos = stepsGrid.getVertex(index - col);
+				ofPoint tnhead = tcpos - tnpos;
+				float tdist = tnpos.distance(tcpos);
+				if (tdist < srow/2) {
+					tnhead.limit(ofMap(tdist, 0.0, srow/2, 0.5, 0.0));
+					tcvel.y += tnhead.y;
+				}
+			}
+			if (y < row) {
+				ofPoint tnpos = stepsGrid.getVertex(index + col);
+				ofPoint tnhead = tcpos - tnpos;
+				float tdist = tnpos.distance(tcpos);
+				if (tdist < srow/2) {
+					tnhead.limit(ofMap(tdist, 0.0, srow/2, 0.5, 0.0));
+					tcvel.y += tnhead.y;
+				}
+			}
 
-		if (tvel.length() > 0.01) {
-			tvel *= 0.965;
-		}
-		else {
-			tvel = ofPoint(0, 0);
-		}
+			if (tcvel.length() > 0.02) {
+				tcvel *= 0.95;
+			}
+			else {
+				tcvel = ofPoint(0, 0);
+			}
 
-		stepsGrid.setVertex(p, stepsGrid.getVertex(p) + tvel);
+			stepsGrid.setVertex(index, tcpos + tcvel);
 
-		vel[p] = tvel;
+			ofFloatColor c;
+			float hue = ofMap(tcvel.length(), 2.0, 0.0, 210.0, 255.0);
+			float bright = 255;
+			float sat = ofMap(tcvel.length(), 0.6, 0.2, 255, 0);
+			c = ofColor::fromHsb(hue, sat, bright);
+
+			stepsGrid.setColor(index, c);
+
+			vel[index].y = tcvel.y;
+
+		}
 	}
-
-	//Check if timeout
-
-	//Start going back to original place to form the map again
 }
 
 void StepsGrid::draw() {
