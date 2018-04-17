@@ -5,7 +5,9 @@ void ofApp::setup(){
 	kinect.setup(0, 4); //Kinect bot to top mapping
 	ofSetFrameRate(60);
 	ofBackground(0);
-	steps.setup(13, 5);
+	ofEnableBlendMode(OF_BLENDMODE_ADD);
+	ofEnableAlphaBlending();
+	steps.setup(13, 10);
 
 	gui.setup();
 
@@ -60,7 +62,7 @@ void ofApp::draw(){
 	steps.draw();
 	steps.output.getTextureReference().bind();
 	project.draw();
-	steps.output.getTextureReference().unbind();
+	steps.output.getTextureReference().bind();
 
 	if (showKinect) {
 		kinect.draw(0, 0);
