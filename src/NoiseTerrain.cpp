@@ -96,10 +96,6 @@ void NoiseTerrain::update(vector<ofPoint> &_pts) {
 			vel[t][p] = tvel;
 		}
 	}
-
-	//Check if timeout
-
-	//Start going back to original place to form the map again
 }
 
 void NoiseTerrain::draw() {
