@@ -7,52 +7,19 @@ class StepsGrid
 public:
 	StepsGrid();
 	~StepsGrid();
-
 	void setup(int nSteps, int nLayers);
 	void update(vector<ofPoint> &_pts);
 	void draw();
 
-	int w, h, col, row, layer, scol, srow, slayer, posbuffersize, shue, ehue, huestep, interactionmode;
-
-	ofMesh stepsGrid;
-
-	vector<ofMesh> rows;
-
-	vector<ofPoint> pos, vel;
-
-	deque<deque<deque<ofPoint>>> posbuf;
-
-	ofFbo output;
-
-	//Step faces gradients and hue shift noise params
-
+	int w, h, col, row, layer, posbuffersize, shue, ehue, huestep, interactionmode, sfcol, sfrow, trigcol, trigrow;
+	float scol, srow, slayer, sfscol, sfsrow, gradnoisestep, gradnoisespeed, noisestep, noisespeed, trigscol, trigsrow, trigstartcol, trigstartrow;
+	vector<ofMesh> stepsGrid, rows;
 	ofMesh stepfaces;
-
-	int sfcol, sfrow, sfscol, sfsrow;
-
-	float gradnoisestep, gradnoisespeed;
-
-	//------------------------------------------------
-
-	
-
-	//Noise parameters (global)
-
-	float noisestep, noisespeed;
-
-	//------------------------------------------------
+	vector<ofPoint> pos, vel, triggerpos;
+	deque<deque<deque<ofPoint>>> posbuf;
+	ofColor sgc1, sgc2, sgc3, sgc4, gradc1, gradc2, gradc3;
+	vector<ofSoundPlayer> player;
+	vector<string> tracks;
+	vector<int> triggerlife;
+	ofFbo output;
 };
-
-
-/*
-
-To-do list:
-
-1. Add colour ways to GUI (multiple colour variations on the fly)
-2. Add multiple white lines to highlight different colours, like topographical map
-3. Make ripples lat longer, perhaps slower at the top, faster at the bottom
-4. Limit step face colour shifts (3-4 main colours)
-5. Add noise to the outline of the ripple, it looks too much like dropplet
-6. Add subtle movement/noise to holding state
-
-*/

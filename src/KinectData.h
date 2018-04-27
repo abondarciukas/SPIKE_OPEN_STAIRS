@@ -8,7 +8,6 @@ class KinectData
 public:
 	KinectData();
 	~KinectData();
-
 	void setup(int id, int map);
 	void setClip(int c, int f);
 	void update();
@@ -17,26 +16,16 @@ public:
 	void close();
 
 	ofxKinect kinect;
-
 	ofPixels kinectDepthPixels;
 	ofPixels kinectColourPixels;
-
 	ofTexture kinectDepthTexture;
 	ofTexture kinectColourTexture;
-
 	ofxCvGrayscaleImage cvDepthGrey;
 	ofxCvFloatImage cvDepthFloat;
 	ofxCvContourFinder cvContour;
-
-	int kinectMap;
-
 	vector<ofPoint> tp;
-
+	int kinectMap, deviceId, kw, kh, nearClip, farClip, roisx, roisy, roiex, roiey, mx, my, offset;
 	float threshMin, threshMax;
-	int deviceId, kw, kh;
-	int nearClip, farClip;
-	int roisx, roisy, roiex, roiey, mx, my;
-	int offset;
 
 };
 

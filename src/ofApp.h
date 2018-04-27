@@ -43,6 +43,7 @@ class ofApp : public ofBaseApp{
 
 		ofxFloatSlider kmin, kmax;
 		ofxIntSlider koffset;
+		ofxIntSlider sgmode;
 
 		ofxPanel gui;
 
