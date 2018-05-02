@@ -12,7 +12,7 @@ StepsGrid::~StepsGrid()
 void StepsGrid::setup(int nSteps, int nLayers) {
 	w = 787;
 	h = 3000;
-	col = 50;
+	col = 49;
 	row = 2 * nSteps;
 	layer = nLayers;
 	srow = h / row;
@@ -190,6 +190,15 @@ void StepsGrid::setup(int nSteps, int nLayers) {
 	tracks.push_back("SOUND/CHOIR.aif");
 	tracks.push_back("SOUND/ICEFLOW.aif");
 	tracks.push_back("SOUND/SPATIALVIBRATIONS.aif");
+	tracks.push_back("SOUND/KUROSHIO.aif");
+	tracks.push_back("SOUND/MILLS.aif");
+	tracks.push_back("SOUND/MIX01.aif");
+	tracks.push_back("SOUND/MIX02.aif");
+	tracks.push_back("SOUND/SHIFTING.aif");
+	tracks.push_back("SOUND/UNDERSCORE.aif");
+	tracks.push_back("SOUND/CHIBA.aif");
+	tracks.push_back("SOUND/CORALIX.aif");
+	tracks.push_back("SOUND/SYMPHONY.aif");
 	for (int y = 0; y < trigrow; y++) {
 		for (int x = 0; x < trigcol; x++) {
 			ofPoint temp = ofPoint(x * trigscol + trigstartcol, y * trigsrow + trigstartrow);

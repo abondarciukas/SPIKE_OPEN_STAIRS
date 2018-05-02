@@ -2,9 +2,7 @@
 
 #include "ofMain.h"
 #include "KinectData.h"
-#include "FlowingBorders.h"
 #include "ofxDelaunay.h"
-#include "Footsteps.h"
 #include "ofxGui.h"
 #include "NoiseTerrain.h"
 #include "StepsGrid.h"
@@ -31,10 +29,6 @@ class ofApp : public ofBaseApp{
 		void exit();
 
 		KinectData kinect;
-		FlowingBorders borders;
-		ofImage footprint;
-		ofxDelaunay delaunay;
-		vector<ofPoint> points;
 
 		StepsGrid steps;
 		ofMesh project;

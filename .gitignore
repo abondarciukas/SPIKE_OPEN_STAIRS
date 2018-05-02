@@ -1,4 +1,10 @@
 SPIKE_OPNE_STAIRS.VC.db
 SPIKE_OPNE_STAIRS.VC.VC.opendb
+SPIKE_OPNE_STAIRS.sln
+SPIKE_OPNE_STAIRS.vcxproj
+SPIKE_OPNE_STAIRS.vcxproj.filters
+SPIKE_OPNE_STAIRS.vcxproj.user
 bin
 obj
+.vs
+
